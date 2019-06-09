@@ -1,0 +1,23 @@
+{
+  "name": "write-blog",
+  "version": "1.0.0",
+  "description": "vuepress write-blog",
+  "private": true,
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "deploy": "bash deploy.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soyomo/write-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soyomo/write-blog/issues"
+  },
+  "homepage": "https://github.com/soyomo/write-blog#readme"
+}

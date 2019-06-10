@@ -16,77 +16,18 @@ module.exports = {
         lineNumbers: true // 代码块显示行号
     },
     themeConfig: {
-        nav: [
-            { text: 'Home', link: '/' },
-            { text: 'Guide', link: '/foo/one.html' },
-            { text: 'External', link: 'https://google.com' },
-        ],
+        nav: require('./nav'),
         sidebar: {
-            '/foo/': [
-                '',     /* /foo/ */
-                'one',  /* /foo/one.html */
-                'two'   /* /foo/two.html */
-            ],
-
-            '/bar/': [
-                '',      /* /bar/ */
-                'three', /* /bar/three.html */
-                'four'   /* /bar/four.html */
-            ],
-
-            // fallback
-            '/': [
-                '',        /* / */
-                'contact', /* /contact.html */
-                'about'    /* /about.html */
-            ]
+            '/fontend/': getFontEnd()
         },
-        // sidebar: 'auto',
-        // sidebar: {
-        //     '/foo/': [
-        //         '',     /* /foo/ */
-        //         'one',  /* /foo/one.html */
-        //         'two'   /* /foo/two.html */
-        //     ],
-
-        //     '/bar/': [
-        //         '',      /* /bar/ */
-        //         'three', /* /bar/three.html */
-        //         'four'   /* /bar/four.html */
-        //     ],
-
-        //     // fallback
-        //     '/': [
-        //         '',        /* / */
-        //         'contact', /* /contact.html */
-        //         'about'    /* /about.html */
-        //     ],
-        // },
-        // sidebar: [
-        //     {
-        //         '/fontend/': [
-        //             '/fontend/',
-        //         ],
-        //     },
-        //     {
-        //         '/work/': [
-        //             '/work/'
-        //         ]
-        //     }
-        // ], // 侧边栏配置
         sidebarDepth: 2, // 侧边栏显示2级
     }
 };
 
 function getFontEnd() {
     return [
-        {
-            title: "前端",
-            collapsable: false,
-            children: [
-                '',
-                'one'
-            ]
-        }
+        '/fontend/Vue/',
+        '/fontend/React/',
+        '/fontend/Angular/'
     ]
 }

@@ -17,23 +17,68 @@ module.exports = {
     },
     themeConfig: {
         nav: [
-            {text: '主页', link: '/'},
-            {text: '前端', link: '/fontend/'},
-            {text: '工作', link: '/work/'},
-            {text: '可视化', link: '/visualization/'}
-
+            { text: 'Home', link: '/' },
+            { text: 'Guide', link: '/foo/one.html' },
+            { text: 'External', link: 'https://google.com' },
         ],
         sidebar: {
-            '/fontend/': [
-                '',
-                'one'
+            '/foo/': [
+                '',     /* /foo/ */
+                'one',  /* /foo/one.html */
+                'two'   /* /foo/two.html */
+            ],
+
+            '/bar/': [
+                '',      /* /bar/ */
+                'three', /* /bar/three.html */
+                'four'   /* /bar/four.html */
+            ],
+
+            // fallback
+            '/': [
+                '',        /* / */
+                'contact', /* /contact.html */
+                'about'    /* /about.html */
             ]
-        }, // 侧边栏配置
+        },
+        // sidebar: 'auto',
+        // sidebar: {
+        //     '/foo/': [
+        //         '',     /* /foo/ */
+        //         'one',  /* /foo/one.html */
+        //         'two'   /* /foo/two.html */
+        //     ],
+
+        //     '/bar/': [
+        //         '',      /* /bar/ */
+        //         'three', /* /bar/three.html */
+        //         'four'   /* /bar/four.html */
+        //     ],
+
+        //     // fallback
+        //     '/': [
+        //         '',        /* / */
+        //         'contact', /* /contact.html */
+        //         'about'    /* /about.html */
+        //     ],
+        // },
+        // sidebar: [
+        //     {
+        //         '/fontend/': [
+        //             '/fontend/',
+        //         ],
+        //     },
+        //     {
+        //         '/work/': [
+        //             '/work/'
+        //         ]
+        //     }
+        // ], // 侧边栏配置
         sidebarDepth: 2, // 侧边栏显示2级
     }
 };
 
-function getFontEnd () {
+function getFontEnd() {
     return [
         {
             title: "前端",

@@ -9,3 +9,7 @@
 ## 开始
 
 在开始之前，默认确保你的电脑上面是有[Node](https://nodejs.org/zh-cn/)环境的，并且确保Node.js的版本大于8.6;如果已经阅读过官方文档最好不过。
+
+## travis自动化部署
+
+如果遇到这个报错：![报错](./image/no-git-access.png)，说明没有权限往git仓库上提交代码，那么这个时候就需要去[github setting](https://github.com/settings/tokens)申请一个Personal access tokens;

@@ -17,5 +17,6 @@ module.exports = [
     },
     { text: '工作笔记', link: '/work/' },
     { text: '前端可视化', link: '/visualization/' },
+    { text: '环境配置', link: '/devconfig/' },
     { text: 'Github', link: 'https://github.com/soyomo' }
 ]

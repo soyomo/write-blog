@@ -18,24 +18,28 @@ module.exports = {
     themeConfig: {
         nav: require('./nav'),
         sidebar: {
-            '/blog/': getBlogIntro(),
-            '/frame/': getframe()
+            '/blog/': getSidebar('blog'),
+            '/frame/': getSidebar('frame'),
+            '/basis/': getSidebar('basis')
         },
         sidebarDepth: 2, // 侧边栏显示2级
     }
 };
 
-function getframe() {
-    return [
-        '/frame/',
-        '/frame/Vue/',
-        '/frame/React/',
-        '/frame/Angular/'
-    ]
-}
+function getSidebar(barName) {
+    const sidebar = {
+        frame: [
+            '/frame/',
+            '/frame/Vue/',
+            '/frame/React/',
+            '/frame/Angular/'
+        ],
+        blog: [
+            '/blog/'
+        ],
+        basis: [
 
-function getBlogIntro() {
-    return [
-        '/blog/'
-    ]
+        ]
+    }
+    return sidebar[barName]
 }

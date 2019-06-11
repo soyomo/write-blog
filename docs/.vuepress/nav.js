@@ -15,7 +15,7 @@ module.exports = [
             { text: 'Flutter', link: '/frame/Flutter/' }
         ]
     },
-    { text: '工作', link: '/work/' },
-    { text: '可视化', link: '/visualization/' },
+    { text: '工作笔记', link: '/work/' },
+    { text: '前端可视化', link: '/visualization/' },
     { text: 'Github', link: 'https://github.com/soyomo' }
 ]

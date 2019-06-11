@@ -18,6 +18,7 @@ module.exports = {
     themeConfig: {
         nav: require('./nav'),
         sidebar: {
+            '/blog/': getBlogIntro(),
             '/frame/': getframe()
         },
         sidebarDepth: 2, // 侧边栏显示2级
@@ -30,5 +31,11 @@ function getframe() {
         '/frame/Vue/',
         '/frame/React/',
         '/frame/Angular/'
+    ]
+}
+
+function getBlogIntro() {
+    return [
+        '/blog/'
     ]
 }

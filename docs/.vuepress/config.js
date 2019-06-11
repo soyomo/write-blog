@@ -18,16 +18,17 @@ module.exports = {
     themeConfig: {
         nav: require('./nav'),
         sidebar: {
-            '/fontend/': getFontEnd()
+            '/frame/': getframe()
         },
         sidebarDepth: 2, // 侧边栏显示2级
     }
 };
 
-function getFontEnd() {
+function getframe() {
     return [
-        '/fontend/Vue/',
-        '/fontend/React/',
-        '/fontend/Angular/'
+        '/frame/',
+        '/frame/Vue/',
+        '/frame/React/',
+        '/frame/Angular/'
     ]
 }

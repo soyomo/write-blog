@@ -48,7 +48,43 @@
 ```bash
 
 mkdir writ-blog
+cd writ-blog
+npm init -y
+mkdir docs // 这个文件夹是放置所有博客的地方
+cd docs
+touch README.md
 
+```
+
+初始化之后需要在docs的跟目录中新建一个README.md文件，这个文件就是你博客的首页(index.html),此文件里面的内容是：
+
+```yaml
+---
+home: true
+heroImage: /logo.png
+actionText: 介绍 →
+actionLink: /blog/
+features:
+- title: 框架
+  details: Vue、React、Abgular、Flutter的学习和实践。
+- title: 工作笔记
+  details: 好记性不如烂笔头，记录平时工作中遇到的一些问题和解决方法。
+- title: 前端可视化
+  details: 前端方面可视化的知识，包括webgl,canvas,glsl等。
+- title: 后端
+  details: 前端怎么能不了解一些后端知识呢？ 一些个人对后端的学习和实践。
+- title: 开发环境配置
+  details: 有时候开发环境的配置也是很头疼的，windows和mac下面又各不一样，工具的熟练程度直接决定开发速度，所以留文待查吧。
+footer: MIT Licensed | Copyright © 2019-present chenfeng
+---
+```
+
+初始化之后，在package.json中添加两个script命令：
+
+```js
+
+"dev": "vuepress dev docs",
+"build": "vuepress build docs",
 
 ```
 

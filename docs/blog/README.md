@@ -52,11 +52,11 @@ cd writ-blog
 npm init -y
 mkdir docs // 这个文件夹是放置所有博客的地方
 cd docs
-touch README.md
+touch README.md //创建reademe文件，即首页
 
 ```
 
-初始化之后需要在docs的跟目录中新建一个README.md文件，这个文件就是你博客的首页(index.html),此文件里面的内容是：
+初始化之后需要在docs的跟目录中新建一个README.md文件，这个文件就是你博客的首页(index.html),此文件里面的内容是('home: true',是必须的)：
 
 ```yaml
 ---
@@ -79,7 +79,7 @@ footer: MIT Licensed | Copyright © 2019-present chenfeng
 ---
 ```
 
-初始化之后，在package.json中添加两个script命令：
+初始化之后，在package.json中的script中添加两个命令：
 
 ```js
 

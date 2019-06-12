@@ -1,8 +1,8 @@
 ---
 home: true
 heroImage: /logo.png
-# actionText: 介绍 →
-# actionLink: /blog/
+actionText: 介绍 →
+actionLink: /blog/
 features:
 - title: 框架
   details: Vue、React、Abgular、Flutter的学习和实践。

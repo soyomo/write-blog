@@ -12,4 +12,19 @@
 
 ## travis自动化部署
 
-如果遇到这个报错：![报错](./image/no-git-access.png)，说明没有权限往git仓库上提交代码，那么这个时候就需要去[github setting](https://github.com/settings/tokens)申请一个Personal access tokens;
+如果遇到这个报错：![报错](./image/no-git-access.png)，说明没有权限往git仓库上提交代码，那么这个时候就需要三步来解决：
+
+### 1. 申请Personal access tokens
+
+去[github setting](https://github.com/settings/tokens)申请一个Personal access tokens
+![token](./image/personal-access-tokens.png)
+点击Generate new token
+![new_token](./image/new-personal.png)
+随便起一个Note,然后把所有的都给勾选上，然后点击Generate token这个按钮，结果大概是这样的
+![copy](./image/copy.png),然后点击后面的复制按钮图标，留作第二步使用;
+
+### 2. travis中设置 Environment Variables
+
+ 去travis上你的项目中的More OPtions:
+ ![OPtions](./image/more-option.png)
+ 中找到Settings,再在Environment Variables中添加环境变量

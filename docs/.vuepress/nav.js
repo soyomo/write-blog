@@ -2,9 +2,10 @@ module.exports = [
     { text: '主页', link: '/' },
     {
         text: '基础', items: [
-            { text: 'javaScript', link: '/basis/javaScript/' },
+            { text: 'JavaScript', link: '/basis/JavaScript/' },
             { text: 'HTML', link: '/basis/HTML/' },
             { text: 'CSS', link: '/basis/CSS/' },
+            { text: 'TypeScript', link: '/basis/CSS/' },
         ]
     },
     {

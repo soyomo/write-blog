@@ -26,8 +26,13 @@ flex的子元素的属性：
     <title>flex demo</title>
 </head>
 <body>
-    <style>
-
+    <style contenteditable>
+    style{
+        display: block;
+    }
+    .box{
+        background-color: blue;
+    }
     </style>   
     <div class="box">
         <div class="left"></div>

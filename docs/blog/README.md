@@ -41,6 +41,11 @@
 * 构建并且发布
 * 自动化部署
 
+开始之前我先放一个我的博客的目录结构：
+<div>
+    <img src="./image/nav.png">
+</div>
+
 ### 第一部分
 
 新建write-blog文件夹,并且初始化项目,在第一部分中
@@ -56,7 +61,19 @@ touch README.md //创建reademe文件，即首页
 
 ```
 
-初始化之后需要在docs的跟目录中新建一个README.md文件，这个文件就是你博客的首页(index.html),此文件里面的内容是('home: true',是必须的)：
+初始化的目录结构如下所示：
+
+``` vue
+.
+├─ docs
+│  └─ README.md
+└─ package.json
+```
+
+::: warning 注意
+docs文件夹是你所有博客所在的文件夹，docs文件夹根目录下的README.md 文件在经过vuepress的编译之后会成为你的博客网站的首页！！！
+:::
+在docs跟目录中的README.md文件中写上以下内容：
 
 ```yaml
 ---
@@ -79,6 +96,10 @@ footer: MIT Licensed | Copyright © 2019-present chenfeng
 ---
 ```
 
+::: warning 注意
+这个文件就是你博客的首页(index.html)，```'home: true'```,是必须的
+:::
+
 初始化之后，在package.json中的script中添加两个命令：
 
 ```js
@@ -87,6 +108,108 @@ footer: MIT Licensed | Copyright © 2019-present chenfeng
 "build": "vuepress build docs",
 
 ```
+
+然后执行```npm run dev```，在浏览器中打开[服务](http://localhost:8080),会出现一个页面，大概长得是这个样子![第一步](./image/one_step.png),到这里第一步就已经完成了，你已经可以写博客了，但是远远不能满足咱们的需求，这个时候就需要配置导航和侧边栏了。
+
+### 第二部分
+
+第二部分的目录结构如下：
+
+```vue
+.
+├─ .vuepress
+│  └─ config.js
+├─ docs
+│  └─ README.md
+└─ package.json
+```
+
+你会注意到这一步多出了一个```.vuepres```的文件夹，有关vuepress的配置，都在这个文件夹之中，下面介绍一下有关导航栏和侧边栏的配置。```.vuepress/config```中的基本配置如下：
+
+```js
+
+module.exports = {
+    title: 'chenfeng\'s blog',
+    description: 'chenfeng的个人博客',
+}
+```
+
+当你晚上上述步骤的话，你在本地起的dev环境所呈现的网页应该包含一个页头,和一个描述。
+
+下面这个配置内容是我的网站的配置：
+
+```js
+
+module.exports = {
+    title: 'chenfeng\'s blog',
+    description: 'chenfeng的个人博客',
+    head: [ // 注入到当前页面的 HTML <head> 中的标签
+        ['link', { rel: 'icon', href: '/logo.png' }], // 增加一个自定义的 favicon(网页标签的图标)
+        ['link', { rel: 'manifest', href: '/logo.png' }],
+        ['link', { rel: 'apple-touch-icon', href: '/logo.png' }],
+        ['link', { rel: 'mask-icon', href: '/logo.png', color: '#3eaf7c' }],
+        ['meta', { 'http-quiv': 'pragma', cotent: 'no-cache' }],
+        ['meta', { 'http-quiv': 'expires', cotent: '0' }],
+        ['meta', { 'http-quiv': 'pragma', cotent: 'no-cache, must-revalidate' }]
+    ],
+    serviceWorker: true, // 是否开启 PWA
+    base: '/', // 这是部署到github相关的配置
+    markdown: {
+        lineNumbers: true // 代码块显示行号
+    },
+    themeConfig: {
+        nav: [
+            { text: '主页', link: '/' },
+            {
+                text: '基础', items: [
+                    { text: 'JavaScript', link: '/basis/JavaScript/' },
+                    { text: 'HTML', link: '/basis/HTML/' },
+                    { text: 'CSS', link: '/basis/CSS/' },
+                    { text: 'TypeScript', link: '/basis/CSS/' },
+                ]
+            },
+            {
+                text: '框架', items: [
+                    { text: 'Vue', link: '/frame/Vue/' },
+                    { text: 'React', link: '/frame/React/' },
+                    { text: 'Angular', link: '/frame/Angular/' },
+                    { text: 'Flutter', link: '/frame/Flutter/' }
+                ]
+            },
+            { text: '工作笔记', link: '/work/' },
+            { text: '前端可视化', link: '/visualization/' },
+            { text: '环境配置', link: '/devconfig/' },
+            { text: 'Github', link: 'https://github.com/soyomo' }
+        ],
+        sidebar: {
+            '/blog/': getSidebar('blog'),
+            '/frame/': getSidebar('frame'),
+            '/basis/': getSidebar('basis')
+        },
+        sidebarDepth: 2, // 侧边栏显示2级
+    }
+};
+
+function getSidebar(barName) {
+    const sidebar = {
+        frame: [
+            '/frame/',
+            '/frame/Vue/',
+            '/frame/React/',
+            '/frame/Angular/'
+        ],
+        blog: [
+            '/blog/'
+        ],
+        basis: [
+
+        ]
+    }
+    return sidebar[barName]
+}
+```
+
+如果你感觉文件太长的话，可以单独把nav和sidebar提到另外一个独立的文件之中。
 
 ## travis自动化部署
 

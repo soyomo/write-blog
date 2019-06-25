@@ -2,12 +2,17 @@ module.exports = [
     { text: '主页', link: '/' },
     {
         text: '基础', items: [
-            { text: 'JavaScript', link: '/basis/JavaScript/' },
-            { text: 'HTML', link: '/basis/HTML/' },
-            { text: 'CSS', link: '/basis/CSS/' },
-            { text: 'TypeScript', link: '/basis/CSS/' },
+            { text: '计算机组成', link: '/basis/computer/' },
+            { text: '操作系统', link: '/basis/os/' },
+            { text: '数据结构和算法', link: '/basis/at/' },
+            { text: '网络协议', link: '/basis/net/' },
         ]
     },
+    { text: '前端', items: [
+        {text: '基础', link: '/basis/'},
+        {text: '可视化', link: '/basis/visualization/'},
+    ] },
+    { text: '后端', link: '/backend/'},
     {
         text: '框架', items: [
             { text: 'Vue', link: '/frame/Vue/' },
@@ -17,7 +22,7 @@ module.exports = [
         ]
     },
     { text: '工作笔记', link: '/work/' },
-    { text: '前端可视化', link: '/visualization/' },
-    { text: '环境配置', link: '/devconfig/' },
+    
+    { text: '环境配置', link: '/environment/' },
     { text: 'Github', link: 'https://github.com/soyomo' }
 ]

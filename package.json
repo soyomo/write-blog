@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/soyomo/write-blog/issues"
   },
-  "homepage": "https://github.com/soyomo/write-blog#readme"
+  "homepage": "https://github.com/soyomo/write-blog#readme",
+  "devDependencies": {
+    "@vuepress/plugin-pwa": "^1.0.0-rc.1"
+  }
 }

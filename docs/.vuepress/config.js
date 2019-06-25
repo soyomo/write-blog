@@ -10,7 +10,14 @@ module.exports = {
         ['meta', { 'http-quiv': 'expires', cotent: '0' }],
         ['meta', { 'http-quiv': 'pragma', cotent: 'no-cache, must-revalidate' }]
     ],
-    serviceWorker: true, // 是否开启 PWA
+    // serviceWorker: true, // 是否开启 PWA
+    // plugins: ['@vuepress/pwa'],
+    plugins: {
+      '@vuepress/pwa': {
+        serviceWorker: true,
+        updatePopup: true
+      }
+    },
     base: '/', // 这是部署到github相关的配置
     markdown: {
         lineNumbers: true // 代码块显示行号
@@ -23,6 +30,15 @@ module.exports = {
             '/basis/': getSidebar('basis')
         },
         sidebarDepth: 2, // 侧边栏显示2级
+        plugins: {
+          '@vuepress/pwa': {
+             serviceWorker: true,
+             updatePopup: {
+               message: "New content is available.",
+               buttonText: "Refresh"
+             }
+           }
+        }
     }
 };
 

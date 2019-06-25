@@ -15,6 +15,10 @@
 * **Node.js**的版本大于**8.6**
 * 如果已经阅读过官方文档最好不过
 
+:::warning 注意
+本篇教程一共会在github上面建立两个项目，一个用来写博客，另外一个用来展示博客。其实也可以合成一个项目，看个人喜好。
+:::
+
 ## 安装vuepress
 
 在这个博客使用的是vuepress1.X所以安装的时候需要这样安装：
@@ -42,11 +46,10 @@
 * 自动化部署
 
 开始之前我先放一个我的博客的目录结构：
-<div>
-    <img src="./image/nav.png">
-</div>
 
-### 第一部分
+![jiegou](./image/nav.png)
+
+## 第一部分：搭建项目
 
 新建write-blog文件夹,并且初始化项目,在第一部分中
 
@@ -111,7 +114,7 @@ footer: MIT Licensed | Copyright © 2019-present chenfeng
 
 然后执行```npm run dev```，在浏览器中打开[服务](http://localhost:8080),会出现一个页面，大概长得是这个样子![第一步](./image/one_step.png),到这里第一步就已经完成了，你已经可以写博客了，但是远远不能满足咱们的需求，这个时候就需要配置导航和侧边栏了。
 
-### 第二部分
+## 第二部分：配置导航和侧边栏
 
 第二部分的目录结构如下：
 
@@ -134,7 +137,7 @@ module.exports = {
 }
 ```
 
-当你晚上上述步骤的话，你在本地起的dev环境所呈现的网页应该包含一个页头,和一个描述。
+当你完成上述步骤的话，你在本地起的dev环境所呈现的网页应该包含一个页头,和一个描述。
 
 下面这个配置内容是我的网站的配置：
 
@@ -209,9 +212,135 @@ function getSidebar(barName) {
 }
 ```
 
-如果你感觉文件太长的话，可以单独把nav和sidebar提到另外一个独立的文件之中。
+如果你感觉文件太长的话，可以单独把nav和sidebar提到另外一个独立的文件之中。我的```.vuepress```的文件目录结构是这样的：
 
-## travis自动化部署
+![文件目录结构](./image/vuepress.png)
+
+其中```nav.js```的内容如下所示：
+
+```javascript
+module.exports = [
+    { text: '主页', link: '/' },
+    {
+        text: '基础', items: [
+            { text: 'JavaScript', link: '/basis/JavaScript/' },
+            { text: 'HTML', link: '/basis/HTML/' },
+            { text: 'CSS', link: '/basis/CSS/' },
+            { text: 'TypeScript', link: '/basis/CSS/' },
+        ]
+    },
+    {
+        text: '框架', items: [
+            { text: 'Vue', link: '/frame/Vue/' },
+            { text: 'React', link: '/frame/React/' },
+            { text: 'Angular', link: '/frame/Angular/' },
+            { text: 'Flutter', link: '/frame/Flutter/' }
+        ]
+    },
+    { text: '工作笔记', link: '/work/' },
+    { text: '前端可视化', link: '/visualization/' },
+    { text: '环境配置', link: '/devconfig/' },
+    { text: 'Github', link: 'https://github.com/soyomo' }
+]
+```
+
+然后把这个文件引入到```config.js```中就可以了.这个时候的导航还是不能工作的，因为你会找不到路径。所以需要把导航对应的文件夹都建立好，这些文件夹都是建立在```docs```的跟目录中的，博客每个页面对应的文件都是在docs的跟目录下的！！！这些文件夹建立好之后，都要创建一个README.md的文件，因为当你的路径只写文件夹的时候，这个文件在vuepress中是路径默认匹配的。我的docs的文件目录如下：
+
+![docs文件目录](./image/docs.png)
+
+这个时候运行项目,每一个导航栏对应的页面应该时空白页面。
+
+关于```docs/.vuepress/public```这个文件夹:
+
+![这个文件夹](./image/public.png)
+
+是存放公共的资源的，我把我博客的logo放到了这个文件夹中，每篇博客的静态资源建议放到该篇博客的目录下而不是都放到public之中。例如：本片教程中的图片我都放到了这篇文章对应的目录下面:
+
+![blog](./image/blog.png)
+
+**blog**文件夹的路径：```write-blog/docs/blog```;
+
+关于**pwa**的**manifest**配置也是需要放到这个文件夹中的。
+manifest.json的内容：
+
+```js
+{
+    "name": "chenfeng",
+    "short_name": "feng",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#2196f3",
+    "description": "个人网站",
+    "theme_color": "blue",
+    "icons": [
+      {
+        "src": "./logo.jpg",
+        "sizes": "144x144",
+        "type": "image/png"
+      }
+    ],
+    "related_applications": [
+      {
+        "platform": "web"
+      },
+      {
+        "platform": "play",
+        "url": "https://play.google.com/store/apps/details?id=cheeaun.hackerweb"
+      }
+    ]
+  }
+
+```
+
+到此为止，第二部分就完毕了。
+
+## 第三部分:构建并且发布
+
+在这个部分中你需要在github上新建一个项目，我的项目是[项目](https://github.com/soyomo/soyomo.github.io)，其实这个项目就是所谓的GitHub Pages，新建好项目之后需要在该项目的setings中，![stings](./image/github.io.png),把你的项目的名称改为```{你的用户名}.github.io```,然后你就拥有了一个gitpage,就可以直接通过该链接访问了。[https://{username}.github.io/](https://{username}.github.io/);
+做完这些之后，需要在你的write-blog项目中的package.json中添加以下命令：
+
+```js
+ "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "deploy": "bash deploy.sh",
+  },
+```
+
+并且在```write-blog```文件的跟目录下新建一个```deploy.sh```文件,内容如下：
+
+```bash
+#!/usr/bin/env sh
+
+# 确保脚本抛出遇到的错误
+set -e
+npm install -g vuepress@next
+# 生成静态文件
+npm run build
+
+# 进入生成的文件夹
+cd docs/.vuepress/dist
+
+# 如果是发布到自定义域名
+# echo 'www.example.com' > CNAME
+
+git init
+git add -A
+git commit -m 'deploy'
+
+# 如果发布到 https://<USERNAME>.github.io
+# git push -f https://${token}@${address} master:master
+git push -f git@github.com:{你的用户名}/{你的用户名}.github.io.git master
+
+# 如果发布到 https://<USERNAME>.github.io/<REPO>
+# git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
+
+cd -
+```
+
+然后，执行```npm run deploy```，之后就会发布到```{username}.github.io```这个项目中去了，并且通过连接是可以访问的。这样就基本可以实现书写博客了，但是每次写完都得去```npm run deploy```一下，并不是很友好，那么自动化部署就会帮到你了。
+
+## 第四部分：travis自动化部署
 
 对于[travis](https://travis-ci.org/),如果你还没有听说过，那么这里有一篇[入门的教程](http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html)供你参考。在这个环节里，分为三部分：
 
@@ -270,4 +399,4 @@ cd -
 
 当初部署的时候，并没有去github申请token导致在travis上报错,如果遇到这个报错：
 ![报错](./image/no-git-access.png)
-说明没有权限往git仓库上提交代码，那么这个时候就需要重复撒谎给你一个步骤：travis自动化部署。
+说明没有权限往git仓库上提交代码，那么这个时候就需要重复第四个步骤：travis自动化部署。

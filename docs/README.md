@@ -4,6 +4,8 @@ heroImage: /logo.png
 actionText: 介绍 →
 actionLink: /blog/
 features:
+- title: 基础
+  details: 什么计算机组成原理啦，网络协议啦，数据结构和算法啦，凡是计算机基础的东西都要整理的。
 - title: 框架
   details: Vue、React、Abgular、Flutter的学习和实践。
 - title: 工作笔记

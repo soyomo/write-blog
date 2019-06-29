@@ -9,20 +9,23 @@ module.exports = [
         ]
     },
     { text: '前端', items: [
-        {text: '基础', link: '/basis/'},
-        {text: '可视化', link: '/basis/visualization/'},
+        {text: '基础', items: [
+            {text: 'HTML', link: '/fontend/basis/HTML/'},
+            {text: 'CSS', link: '/fontend/basis/CSS/'},
+            {text: 'js', link: '/fontend/basis/js/'},
+        ]},
+        {
+            text: '框架', items: [
+                { text: 'Vue', link: '/fontend/frame/Vue/' },
+                { text: 'React', link: '/fontend/frame/React/' },
+                { text: 'Angular', link: '/fontend/frame/Angular/' },
+                { text: 'Flutter', link: '/fontend/frame/Flutter/' }
+            ]
+        },
+        {text: '可视化', link: '/fontend/visualization/'},
     ] },
     { text: '后端', link: '/backend/'},
-    {
-        text: '框架', items: [
-            { text: 'Vue', link: '/frame/Vue/' },
-            { text: 'React', link: '/frame/React/' },
-            { text: 'Angular', link: '/frame/Angular/' },
-            { text: 'Flutter', link: '/frame/Flutter/' }
-        ]
-    },
     { text: '工作笔记', link: '/work/' },
-    
     { text: '环境配置', link: '/environment/' },
     { text: 'Github', link: 'https://github.com/soyomo' }
 ]

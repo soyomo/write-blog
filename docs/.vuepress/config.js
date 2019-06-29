@@ -38,7 +38,8 @@ module.exports = {
                buttonText: "Refresh"
              }
            }
-        }
+        },
+        lastUpdated: '最后更新时间', // string | boolean
     }
 };
 

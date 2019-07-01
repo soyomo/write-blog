@@ -400,3 +400,78 @@ cd -
 当初部署的时候，并没有去github申请token导致在travis上报错,如果遇到这个报错：
 ![报错](./image/no-git-access.png)
 说明没有权限往git仓库上提交代码，那么这个时候就需要重复第四个步骤：travis自动化部署。
+
+### 后续
+
+上面的步骤都做好之后，一个简单的博客网站就已经在你的手中诞生了，这个时候应该去买杯咖啡或者吃顿大餐来犒赏一下自己:tada: :tada: :tada:,但是这个博客并没有可以评论的地方怎么办呢？
+
+### 添加评论系统
+
+在添加评论之前你需要准备clientID和clientSecret，这两个东西的生成是在这里[Register a new OAuth application](https://github.com/settings/applications/new),![oauth](./image/oauth.png)除了Authorization callback URL之外，剩余的三项是可以随便填写的，Authorization callback URL中的回调url一般指向的是你的博客地址，我的填写的是‘https://soyomo.github.io’，点击Register application 之后会跳转一个新页面你就会看到clientID和clientSecret了。然后接下来就是添加系统评论的部分了。
+
+我的博客里面用的是[gittalk](https://github.com/gitalk/gitalk)来实现评论的，gittalk的原理就是利用github的issue来实现评论博客的。具体的实现是在```.vuepress/enhanceApp.js```文件中。关于[enhanceApp.js](https://v1.vuepress.vuejs.org/zh/guide/basic-config.html#%E5%BA%94%E7%94%A8%E7%BA%A7%E5%88%AB%E7%9A%84%E9%85%8D%E7%BD%AE)的内容可以参考vuepress的[官方文档](https://v1.vuepress.vuejs.org/zh/guide/basic-config.html#%E5%BA%94%E7%94%A8%E7%BA%A7%E5%88%AB%E7%9A%84%E9%85%8D%E7%BD%AE),在这个博客项目中就只需要在该文件中输入以下代码就可以了：
+
+```js
+
+function integrateGitalk(router) {
+    const linkGitalk = document.createElement('link');
+    linkGitalk.href = 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css';
+    linkGitalk.rel = 'stylesheet';
+    document.body.appendChild(linkGitalk);
+    const scriptGitalk = document.createElement('script');
+    scriptGitalk.src = 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
+    document.body.appendChild(scriptGitalk);
+  
+    router.afterEach((to) => {
+      if (scriptGitalk.onload) {
+        loadGitalk(to);
+      } else {
+        scriptGitalk.onload = () => {
+          loadGitalk(to);
+        }
+      }
+    });
+  
+    function loadGitalk(to) {
+      let commentsContainer = document.getElementById('gitalk-container');
+      if (!commentsContainer) {
+        commentsContainer = document.createElement('div');
+        commentsContainer.id = 'gitalk-container';
+        commentsContainer.classList.add('content');
+      }
+      const $page = document.querySelector('.page');
+      if ($page) {
+        $page.appendChild(commentsContainer);
+        if (typeof Gitalk !== 'undefined' && Gitalk instanceof Function) {
+          renderGitalk(to.fullPath);
+        }
+      }
+    }
+    function renderGitalk(fullPath) {
+      const gitalk = new Gitalk({
+        clientID: '****', // 在github上生成的
+        clientSecret: '****', // 在github上生成的 come from github development
+        repo: '****', // 你的博客的仓库名称
+        owner: '****', // 你在githug上的用户名称
+        admin: ['****'], // 管理成员
+        id: 'comment',
+        distractionFreeMode: false,
+        language: 'zh-CN',
+      });
+      gitalk.render('gitalk-container');
+    }
+  }
+  
+  export default ({Vue, options, router}) => {
+    try {
+      document && integrateGitalk(router)
+    } catch (e) {
+      console.error(e.message)
+    }
+  }
+
+```
+
+:::warning
+需要注意的是因为在开发环境中我们的项目使用的是‘write-blog’，而配置中的repo填写的是博客的项目名称，就会导致在开发环境中登陆不成功，但是如果开发环境中已经有关于评论的部分的话，就说明已经配置成功了。
+:::

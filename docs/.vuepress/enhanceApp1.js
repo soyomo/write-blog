@@ -17,9 +17,10 @@ function integrateGitment(router) {
         scriptGitment.onload = () => {
           const commentsContainer = document.createElement('div')
           commentsContainer.id = 'comments-container'
+          commentsContainer.style.padding = '20px'
+          commentsContainer.style.zIndex = '9'
           commentsContainer.classList.add('content')
           const $page = document.querySelector('.page')
-          console.log($page, '$page')
           if ($page) {
             $page.appendChild(commentsContainer)
             renderGitment()

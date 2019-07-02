@@ -22,6 +22,8 @@ function integrateGitalk(router) {
       if (!commentsContainer) {
         commentsContainer = document.createElement('div');
         commentsContainer.id = 'gitalk-container';
+        commentsContainer.style.padding = '20px'
+        commentsContainer.style.zIndex = '9'
         commentsContainer.classList.add('content');
       }
       const $page = document.querySelector('.page');

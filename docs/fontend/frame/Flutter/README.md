@@ -1,1 +1,3 @@
 # flutter是一个多端的框架产自于google
+
+mac上打开android studio 但是启动不了flutter项目，总是提示没有设备可以连接，那么需要先执行flutter emulators --launch Nexus_6P_API_29 然后就可以启动了哈哈哈纵欲找到解决办法了妹的

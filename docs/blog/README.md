@@ -363,7 +363,7 @@ cd -
  ![OPtions](./image/more-option.png)
  中找到Settings,再在Environment Variables中添加环境变量,我添加的类似于下图，
  ![下图](./image/add-env.png)
- 图中的token后面的内容就是第一步中复制的内容，address的内容是我的github项目的地址。添加完毕之后，在项目中的deploy.sh文件中修改git push 的内容，如下:
+ 图中的token后面的内容就是第一步中复制的内容，address的内容是我的github项目的地址（```github.com/soyomo/soyomo.github.io.git```）。添加完毕之后，在项目中的deploy.sh文件中修改git push 的内容，如下:
 
 ```bash
 !/usr/bin/env sh
@@ -393,7 +393,21 @@ git push -f https://${token}@${address} master:master
 cd -
 ```
 
-这样，在提交代码的时候就不用每次都去```npm run deploy```了
+然后，在项目的跟目录下面创建一个```.travis.yml```文件，内容如下：
+
+```yml
+sudo: required
+language: node_js
+node_js: stable
+script: bash ./deploy.sh
+branches:
+  only:
+  - master
+notifications:
+  email: false
+```
+
+这样，当你每次提交write-blog项目的修改的时候，travis就会自动的帮你构建你的```{username}.github.io```项目了。
 
 ### 报错
 

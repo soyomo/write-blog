@@ -13,10 +13,20 @@ module.exports = {
     // serviceWorker: true, // 是否开启 PWA
     // plugins: ['@vuepress/pwa'],
     plugins: {
-      '@vuepress/pwa': {
-        serviceWorker: true,
-        updatePopup: true
-      }
+        '@vuepress/pwa': {
+            serviceWorker: true,
+            updatePopup: true
+        },
+        '@vssue/vuepress-plugin-vssue': {
+            // 设置 `platform` 而不是 `api`
+            platform: 'github',
+
+            // 其他的 Vssue 配置
+            owner: 'soyomo',
+            repo: 'soyomo.github.io',
+            clientId: 'f56eda181355ca053e0e',
+            clientSecret: '552ca031bd9e42699cf4014c4dde5d6ec20f6cb5',
+        },
     },
     base: '/', // 这是部署到github相关的配置
     markdown: {
@@ -27,17 +37,18 @@ module.exports = {
         sidebar: {
             '/blog/': getSidebar('blog'),
             '/frame/': getSidebar('frame'),
-            '/basis/': getSidebar('basis')
+            '/basis/': getSidebar('basis'),
+            'visualization': getSidebar('visualization')
         },
         sidebarDepth: 2, // 侧边栏显示2级
         plugins: {
-          '@vuepress/pwa': {
-             serviceWorker: true,
-             updatePopup: {
-               message: "New content is available.",
-               buttonText: "Refresh"
-             }
-           }
+            '@vuepress/pwa': {
+                serviceWorker: true,
+                updatePopup: {
+                    message: "New content is available.",
+                    buttonText: "Refresh"
+                }
+            }
         },
         lastUpdated: '最后更新时间', // string | boolean
     }
@@ -46,16 +57,19 @@ module.exports = {
 function getSidebar(barName) {
     const sidebar = {
         frame: [
-            '/frame/',
-            '/frame/Vue/',
-            '/frame/React/',
-            '/frame/Angular/'
+            '/fontend/frame/',
+            '/fontend/frame/Vue/',
+            '/fontend/frame/React/',
+            '/fontend/frame/Angular/'
         ],
         blog: [
             '/blog/'
         ],
         basis: [
 
+        ],
+        visualization: [
+            '/fontend/visualization/'
         ]
     }
     return sidebar[barName]

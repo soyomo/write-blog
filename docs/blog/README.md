@@ -405,11 +405,48 @@ cd -
 
 上面的步骤都做好之后，一个简单的博客网站就已经在你的手中诞生了，这个时候应该去买杯咖啡或者吃顿大餐来犒赏一下自己:tada: :tada: :tada:,但是这个博客并没有可以评论的地方怎么办呢？
 
-### 添加评论系统
+## 添加评论系统
 
 在添加评论之前你需要准备clientID和clientSecret，这两个东西的生成是在这里[Register a new OAuth application](https://github.com/settings/applications/new),![oauth](./image/oauth.png)除了Authorization callback URL之外，剩余的三项是可以随便填写的，Authorization callback URL中的回调url一般指向的是你的博客地址，我的填写的是‘https://soyomo.github.io’，点击Register application 之后会跳转一个新页面你就会看到clientID和clientSecret了。然后接下来就是添加系统评论的部分了。
 
-我的博客里面用的是[gittalk](https://github.com/gitalk/gitalk)来实现评论的，gittalk的原理就是利用github的issue来实现评论博客的。具体的实现是在```.vuepress/enhanceApp.js```文件中。关于[enhanceApp.js](https://v1.vuepress.vuejs.org/zh/guide/basic-config.html#%E5%BA%94%E7%94%A8%E7%BA%A7%E5%88%AB%E7%9A%84%E9%85%8D%E7%BD%AE)的内容可以参考vuepress的[官方文档](https://v1.vuepress.vuejs.org/zh/guide/basic-config.html#%E5%BA%94%E7%94%A8%E7%BA%A7%E5%88%AB%E7%9A%84%E9%85%8D%E7%BD%AE),在这个博客项目中就只需要在该文件中输入以下代码就可以了：
+我的博客现在使用的是：Vssue.[Vssue](https://vssue.js.org/zh/b)是一个vue驱动的基于Issue的插件，在vuepress中使用它十分方便。[这里](https://vssue.js.org/zh/guide/vuepress.html)是官方关于在vuepress中使用Vssue的说明文档，如果你不想看也没关系其实一共也就两步。
+
+### 第一步安装插件
+
+```js
+npm install @vssue/vuepress-plugin-vssue
+npm install @vssue/api-github-v3
+```
+
+## 第二步使用插件
+
+在```.vuepress/config.js```中添加plugins:
+
+```js
+plugins: {
+    '@vssue/vuepress-plugin-vssue': {
+      // 设置 `platform` 而不是 `api`
+      platform: 'github',
+
+      // 其他的 Vssue 配置
+      owner: 'OWNER_OF_REPO', // 你的github账户名称
+      repo: 'NAME_OF_REPO', // 你的Github博客仓库 我填的是soyomo
+      clientId: 'YOUR_CLIENT_ID', // 你在github上面申请的clientId
+      clientSecret: 'YOUR_CLIENT_SECRET', // 在github上面申请的clientSecret
+    },
+  },
+
+```
+
+然后以组件的方式在md文档中使用,也就是在md文档的最底部加上这样一句就行：
+
+```js
+<Vssue title="Vssue Demo" />
+```
+
+## 评论系统的另一种选择
+
+我的博客第一版的里面用的是[gittalk](https://github.com/gitalk/gitalk)来实现评论的，gittalk的原理就是利用github的issue来实现评论博客的。具体的实现是在```.vuepress/enhanceApp.js```文件中。关于[enhanceApp.js](https://v1.vuepress.vuejs.org/zh/guide/basic-config.html#%E5%BA%94%E7%94%A8%E7%BA%A7%E5%88%AB%E7%9A%84%E9%85%8D%E7%BD%AE)的内容可以参考vuepress的[官方文档](https://v1.vuepress.vuejs.org/zh/guide/basic-config.html#%E5%BA%94%E7%94%A8%E7%BA%A7%E5%88%AB%E7%9A%84%E9%85%8D%E7%BD%AE),在这个博客项目中就只需要在该文件中输入以下代码就可以了：
 
 ```js
 
@@ -475,3 +512,5 @@ function integrateGitalk(router) {
 :::warning
 需要注意的是因为在开发环境中我们的项目使用的是‘write-blog’，而配置中的repo填写的是博客的项目名称，就会导致在开发环境中登陆不成功，但是如果开发环境中已经有关于评论的部分的话，就说明已经配置成功了。
 :::
+
+<Vssue title="blog" />

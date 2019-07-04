@@ -22,7 +22,9 @@ module.exports = [
                 { text: 'Flutter', link: '/fontend/frame/Flutter/' }
             ]
         },
-        {text: '可视化', link: '/fontend/visualization/'},
+        {text: '可视化', items: [
+            {text: 'mapbox', link: '/fontend/visualization/mapbox/'}
+        ]},
     ] },
     { text: '后端', link: '/backend/'},
     { text: '工作笔记', link: '/work/' },

@@ -330,7 +330,7 @@ git commit -m 'deploy'
 
 # 如果发布到 https://<USERNAME>.github.io
 # git push -f https://${token}@${address} master:master
-git push -f git@github.com:{你的用户名}/{你的用户名}.github.io.git master
+git push -f git@github.com:{你的用户名}/{你的用户名}.github.io.git master // 这里的项目地址一定是你的博客地址
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
@@ -359,7 +359,10 @@ cd -
 
 ### 设置Environment Variables :100:
 
- 去travis上你的项目中的More OPtions(下图中右上角):
+ 去travis上你的项目(write-blog)中的More OPtions(下图中右上角):
+ :::warning
+ 就是write-blog这个项目的More Options，soyomo.github.io这个项目只是一个空壳子，只有两个地方有用到，第一是按照gitpage的规范创建；第二是部署的时候在travis中设置环境变量address的时候用到这个项目的github地址。别的时候就没有了。
+ :::
  ![OPtions](./image/more-option.png)
  中找到Settings,再在Environment Variables中添加环境变量,我添加的类似于下图，
  ![下图](./image/add-env.png)

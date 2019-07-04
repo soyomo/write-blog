@@ -20,6 +20,7 @@ module.exports = {
         '@vssue/vuepress-plugin-vssue': {
             // 设置 `platform` 而不是 `api`
             platform: 'github',
+            locale: 'zh',
 
             // 其他的 Vssue 配置
             owner: 'soyomo',

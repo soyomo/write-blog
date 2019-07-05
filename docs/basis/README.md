@@ -17,3 +17,9 @@
 * 网络基础
 * 数据库原理
 * 分布式技术架构
+
+## what what what
+
+[What is the single most influential book every programmer should read?](https://stackoverflow.com/questions/1711/what-is-the-single-most-influential-book-every-programmer-should-read)
+
+[What every computer science major should know](http://matt.might.net/articles/what-cs-majors-should-know/)

@@ -38,14 +38,16 @@ module.exports = [
                 ]
             },
             {
-                text: '可视化', items: [
-                    {
-                        text: 'gis', items: [
-                            { text: "mapbox", link: '/visualization/gis/mapbox/' }
-                        ]
-                    },
+                text: '图形学', items: [
+                    {text: "basis", link: '/visualization/basis/'},
+                    {text: "webgl", link: '/visualization/webgl/'},
                 ]
             },
+             {text: 'gis', items: [
+                {text: "basis", link: '/gis/basis/'},
+                {text: "mapbox", link: '/gis/mapbox/'},
+                {text: "openlayer", link: '/gis/openlayer/'},
+            ]},
         ]
     },
     { text: '后端', link: '/backend/' },

@@ -12,12 +12,12 @@ module.exports = {
     ],
     // serviceWorker: true, // 是否开启 PWA
     // plugins: ['@vuepress/pwa'],
-    plugins: {
-        '@vuepress/pwa': {
+    plugins: [
+        ['@vuepress/pwa', {
             serviceWorker: true,
             updatePopup: true
-        },
-        '@vssue/vuepress-plugin-vssue': {
+        }],
+        ['@vssue/vuepress-plugin-vssue', {
             // 设置 `platform` 而不是 `api`
             platform: 'github',
             locale: 'zh',
@@ -27,8 +27,8 @@ module.exports = {
             repo: 'soyomo.github.io',
             clientId: 'f56eda181355ca053e0e',
             clientSecret: '552ca031bd9e42699cf4014c4dde5d6ec20f6cb5',
-        },
-    },
+        }]
+    ],
     base: '/', // 这是部署到github相关的配置
     markdown: {
         lineNumbers: true // 代码块显示行号

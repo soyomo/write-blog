@@ -18,6 +18,7 @@ git commit -m 'deploy'
 
 # 如果发布到 https://<USERNAME>.github.io
 git push -f https://${token}@${address} master:master
+# git push -f 
 # git push -f git@github.com:soyomo/soyomo.github.io.git master
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>

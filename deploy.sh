@@ -20,7 +20,7 @@ git commit -m 'deploy'
 git push -f https://${token}@${address} master:master
 git push -f https://${chenfeng_token}@${chenfeng_address} master:master
 # git push -f git@github.com:soyomo/soyomo.github.io.git master
-
+# adsfasd
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
 

@@ -27,6 +27,7 @@ module.exports = [
                     { text: 'HTML', link: '/fontend/basis/HTML/' },
                     { text: 'CSS', link: '/fontend/basis/CSS/' },
                     { text: 'js', link: '/fontend/basis/js/' },
+                    { text: 'bowser', link: '/fontend/basis/bowser/' },
                 ]
             },
             {

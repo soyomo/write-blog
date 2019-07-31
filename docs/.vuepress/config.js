@@ -35,12 +35,13 @@ module.exports = {
     },
     themeConfig: {
         nav: require('./nav'),
-        sidebar: {
-            '/blog/': getSidebar('blog'),
-            '/frame/': getSidebar('frame'),
-            '/basis/': getSidebar('basis'),
-            'visualization': getSidebar('visualization')
-        },
+        // sidebar: {
+        //     '/blog/': getSidebar('blog'),
+        //     '/frame/': getSidebar('frame'),
+        //     '/basis/': getSidebar('basis'),
+        //     'visualization': getSidebar('visualization')
+        // },
+        sidebar: 'auto',
         sidebarDepth: 2, // 侧边栏显示2级
         plugins: {
             '@vuepress/pwa': {
@@ -67,11 +68,17 @@ function getSidebar(barName) {
             '/blog/'
         ],
         basis: [
+            '',
+            'bowser',
+            'CSS',
+            'HTML',
+            'js',
 
         ],
         visualization: [
             '/fontend/visualization/'
-        ]
+        ],
+
     }
     return sidebar[barName]
 }

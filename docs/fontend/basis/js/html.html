@@ -1,0 +1,53 @@
+<!--
+ * @Description: 
+ * @Author: scf
+ * @Date: 2019-08-27 08:46:13
+ * @LastEditors: scf
+ * @LastEditTime: 2019-08-27 09:05:44
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const arr = [
+        {
+            id: 11, child: [
+                { id: 12, child: [] }
+            ]
+        },
+        {
+            id: 21, child: [
+                { id: 22, child: [] }
+            ]
+        }
+    ]
+    const find = function (item, id) {
+        let result = null
+        if (item.length > 0) {
+            for (let i = 0; i < item.length; i++) {
+                console.log(item[i].id, 'item')
+                if (item[i].id !== id ) {
+                    console.log(item[i], 9999)
+                    result = find(item[i].child, id)
+                }
+                if(item[i].id === id) {
+                    result = item[i]
+                }
+            }
+        }
+        return result
+    }
+    console.log(find(arr, 22), 'result')
+</script>
+
+</html>
